@@ -51,9 +51,9 @@ function drawPoints(pts){ctx.clearRect(0,0,debug.width,debug.height);if(!$('poin
 function place(landmarks){
  const w=view.clientWidth,h=view.clientHeight;
  const p=palmPose(landmarks,video.videoWidth,video.videoHeight,w,h,$('mirror').checked);drawPoints(p.pts);
- const target={x:p.center.x-w/2,y:h/2-p.center.y,size:Math.max(8,p.width*0.65),angle:p.angle};
+ const target={x:p.center.x-w/2,y:h/2-p.center.y,size:Math.max(8,p.width*1.75),angle:p.angle};
  if(!seen)smooth={...target};else {const a=0.4;for(const key of ['x','y','size'])smooth[key]+=(target[key]-smooth[key])*a;smooth.angle+=Math.atan2(Math.sin(target.angle-smooth.angle),Math.cos(target.angle-smooth.angle))*a;}
- seen=true;pal.visible=true;pal.position.set(smooth.x,smooth.y,0);pal.scale.setScalar(smooth.size);pal.rotation.set(0,-0.12,-smooth.angle);$('guide').hidden=true;
+ seen=true;pal.visible=true;pal.position.set(smooth.x,smooth.y,0);pal.scale.setScalar(smooth.size);pal.rotation.set(THREE.MathUtils.degToRad(80),0,-smooth.angle);$('guide').hidden=true;
 }
 function tick(now){
  if(mode==='idle')return;
