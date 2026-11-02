@@ -1,0 +1,10 @@
+{
+  "name": "palm-pal-web-ar",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "assets": "node scripts/download-assets.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node --check public/app.js && node --check public/hashida-loader.js && node scripts/check-assets.mjs && node --test scripts/geometry.test.mjs scripts/hashida.test.mjs"
+  }
+}
