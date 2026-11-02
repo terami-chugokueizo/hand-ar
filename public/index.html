@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#102b2a"><title>Palm Pal · 手のひらAR</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<header><span class="brand">PALM PAL <small>WEB AR DEMO · v1</small></span><span class="badge">端末内で認識</span></header>
+<main>
+ <section class="intro"><p class="eyebrow">A LITTLE FRIEND, IN YOUR HAND.</p><h1>手のひらに、<br>小さなともだち。</h1><p>カメラに手をかざすと、3Dキャラクターが追いかけます。</p></section>
+ <section class="viewer" id="viewer" aria-label="ARプレビュー">
+  <video id="video" playsinline muted autoplay></video><canvas id="overlay"></canvas><canvas id="debug"></canvas>
+  <div class="guide" id="guide"><span>✧</span><p>明るい場所で、手の全体を映してください</p></div>
+  <div class="viewer-label">LIVE CAMERA <span id="fps">—</span></div>
+ </section>
+ <section class="controls">
+  <div class="status" id="status" role="status" aria-live="polite">準備完了。「カメラを開始」を押してください。</div>
+  <div class="buttons"><button id="start" disabled>カメラを開始</button><button id="stop" class="secondary" disabled>停止</button><button id="preview" class="secondary" disabled>3D表示を確認</button></div>
+  <div class="options"><label>カメラ <select id="facing"><option value="environment">背面</option><option value="user">前面</option></select></label><label><input id="mirror" type="checkbox">左右反転</label><label><input id="points" type="checkbox">認識点を表示</label></div>
+  <p class="note">映像はサーバーへ送信しません。Safari / ChromeでHTTPSのURLを直接開いてください。</p>
+ </section>
+ <details><summary>診断ログ・読み込めないとき</summary><p>エラーが出たら内容を確認し、通信・カメラ権限を直して再試行してください。認識処理はCPUで実行します。</p><pre id="log"></pre><button id="reload" class="secondary">ページを再読み込み</button><button id="blanktest" class="secondary">認識エンジンを検査</button></details>
+ <footer>手の位置に3Dを重ねる簡易ARです。手の表裏判定・遮蔽・実空間への固定には対応していません。</footer>
+</main>
+<script>
+// This watchdog runs before any module download, so a missing app.js is visible.
+window.__bootWatch=setTimeout(function(){document.getElementById('status').textContent='起動エラー：app.js を読み込めません。配置と通信を確認して再読み込みしてください。';},12000);
+</script><script type="module" src="./app.js"></script>
+</body></html>
+
